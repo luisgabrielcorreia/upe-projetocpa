@@ -1,6 +1,6 @@
 # Nome do projeto
 
-<img src="imagem.png" alt="Exemplo imagem">
+<img src="https://imgur.com/jYDFC1T" alt="Exemplo imagem">
 
 > Um sistema feito para a Universidade de Pernambuco, que permite o gerenciamento de avaliações e votações, com geração automática de relatórios e gráficos para análise de resultados.
 
