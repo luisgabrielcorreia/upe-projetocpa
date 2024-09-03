@@ -1,4 +1,4 @@
-# Nome do projeto
+# Sistema CPA - UPE
 
 <img src="https://imgur.com/a/qTGTBdx" alt="Exemplo imagem">
 
@@ -22,7 +22,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 - Você tem uma máquina com Windows ou Linux. O projeto não foi testado em Mac.
 - Você leu a documentação do PHP e guia de instalação do MySQL.
 
-## 🚀 Instalando <nome_do_projeto>
+## 🚀 Instalando upe-projetocpa
 
 Para instalar o upe-projetocpa, siga estas etapas:
 
