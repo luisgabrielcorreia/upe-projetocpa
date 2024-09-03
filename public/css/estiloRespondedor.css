@@ -1,0 +1,58 @@
+body {
+    background-color: #f0f0f0;
+    padding-top: 120px; /* Para a navbar não sobrepor o conteúdo */
+    font-family: Arial, sans-serif; /* Usar uma fonte padrão mais limpa */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.FormItem {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adicionar uma sombra suave para destacar */
+}
+
+.FormItem .Titulo {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333; /* Cor mais escura para o título */
+}
+
+.FormItem .Explicacao {
+    color: #666; /* Cor um pouco mais escura para o texto de explicação */
+    margin-bottom: 10px;
+}
+
+.FormItem .inputData {
+    width: 100%; /* Garantir que os inputs se estendam por toda a largura */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Evitar que o padding afete a largura total */
+    margin-bottom: 10px;
+}
+
+.FormItem .inputData[type="checkbox"] + span,
+.FormItem .inputData[type="radio"] + span {
+    color: #333; /* Cor escura para o texto dos checkboxes e radio buttons */
+}
+
+.FormItem .inputData[type="checkbox"]:checked + span::before,
+.FormItem .inputData[type="radio"]:checked + span::before {
+    content: "\2713"; /* Adicionar um marcador de seleção (✓) para checkboxes e radio buttons selecionados */
+    color: #007bff; /* Cor azul para o marcador de seleção */
+    font-weight: bold;
+}
+
+.FormItem .inputData:focus {
+    outline: none; /* Remover a borda de foco */
+    border-color: #007bff; /* Mudar a cor da borda quando o input está em foco */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Adicionar uma sombra sutil para indicar foco */
+}
+
