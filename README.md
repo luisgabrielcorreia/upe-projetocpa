@@ -11,7 +11,7 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Implementação do sistema de votação
 - [x] Criação de gráficos para visualização de dados
 - [x] Integração com a autenticação do Google
-- [ ] Geração de relatórios em PDF/Excel
+- [x] Geração de relatórios em PDF/Excel
 - [ ] Implementação de um sistema de notificações
 
 ## 💻 Pré-requisitos
