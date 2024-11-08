@@ -39,6 +39,11 @@ $analysisData = [];
 while ($resposta = $result->fetch_assoc()) {
     $respostas = json_decode($resposta['respostas'], true);
     foreach ($respostas as $pergunta => $resposta_valor) {
+        // Certifique-se de que $pergunta e $resposta_valor são strings
+        $pergunta = (string) $pergunta;
+        // Verifica se $resposta_valor é um array, e converte para string se necessário
+        $resposta_valor = is_array($resposta_valor) ? implode(', ', $resposta_valor) : (string) $resposta_valor;
+    
         if (strpos($pergunta, 'QDiscursiva') === false) {
             if (!isset($analysisData[$pergunta])) {
                 $analysisData[$pergunta] = [];
@@ -69,7 +74,7 @@ $chartIndex = 0;
 foreach ($analysisData as $pergunta => $respostas) {
     $categories = [];
     $values = [];
-
+    
     // Cria arrays de categorias e valores de respostas
     foreach ($respostas as $resposta_valor => $count) {
         $categories[] = new DataSeriesValues('String', 'AnaliseRespostas!$B$' . ($chartIndex * 3 + 1) . ':$' . $col . '$' . ($chartIndex * 3 + 1), null, count($respostas));
@@ -109,6 +114,9 @@ foreach ($result as $resposta) {
 
     $row = 2;
     foreach ($respostas as $pergunta => $resposta_valor) {
+        $pergunta = (string) $pergunta;
+        $resposta_valor = is_array($resposta_valor) ? implode(', ', $resposta_valor) : (string) $resposta_valor;
+
         $sheet->setCellValue("A$row", $pergunta);
         $sheet->setCellValue("B$row", $resposta_valor);
         $row++;

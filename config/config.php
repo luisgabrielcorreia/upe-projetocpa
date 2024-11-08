@@ -6,7 +6,7 @@ session_start();
 
 $clientID = '970233426627-anv3k76kn0jbr890gu1o75gki92ev94f.apps.googleusercontent.com';
 $clientSecret = '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';
-$redirectUri = 'http://localhost/projetoCPA/config/welcome.php'; 
+$redirectUri = 'http://localhost/upe-projetocpa/config/welcome.php'; 
 
 $client = new Google_Client();
 $client->setClientId($clientID);

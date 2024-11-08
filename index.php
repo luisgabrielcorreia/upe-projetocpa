@@ -254,7 +254,7 @@ if (isset($_SESSION['user_token'])) {
                 </div>
                 <div class="modal-body">
                     <p class="modal-dialog" style="color: #ff0000"><strong>Importante:</strong> Registre-se, preferencialmente, usando seu e-mail institucional.</p>
-                    <form action="config/register.php" method="POST">
+                    <form id="registerForm" action="config/register.php" method="POST">
                         <div class="form-group">
                             <label for="full_name">Nome completo:</label>
                             <input type="text" class="form-control" id="full_name" name="full_name" required>
@@ -272,10 +272,11 @@ if (isset($_SESSION['user_token'])) {
                             <input type="checkbox" name="afiliacoes[]" value="Docente"> Docente<br>
                             <input type="checkbox" name="afiliacoes[]" value="Discente"> Discente<br>
                             <input type="checkbox" name="afiliacoes[]" value="Servidores Técnico-Administrativos"> Servidores Técnico-Administrativos<br>
-                            <input type="checkbox" name="afiliacoes[]" value="Estudante"> Estudante<br>
                             <input type="checkbox" name="afiliacoes[]" value="Egresso"> Egresso<br>
+                            <small style="color: #ff0000" id="affiliationError"></small>
                         </div>
                         <button type="submit" class="btn btn-primary">Registrar</button>
+                        <div id="registerError" style="color: #ff0000; margin-top: 10px;"></div> <!-- Div para exibir o erro -->
                     </form>
                 </div>
             </div>
@@ -292,6 +293,46 @@ if (isset($_SESSION['user_token'])) {
                 document.getElementById('sidebar').classList.toggle('minimized');
                 document.getElementById('content').classList.toggle('minimized');
                 document.getElementById('footer').classList.toggle('minimized');
+            });
+        });
+    </script>
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Validação de afiliações
+            const checkboxes = document.querySelectorAll('input[name="afiliacoes[]"]');
+            let selected = false;
+
+            checkboxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    selected = true;
+                }
+            });
+
+            if (!selected) {
+                document.getElementById("affiliationError").innerText = "Por favor, selecione pelo menos uma afiliação.";
+                return;
+            } else {
+                document.getElementById("affiliationError").innerText = "";
+            }
+
+            // Preparação do AJAX
+            const formData = new FormData(document.getElementById("registerForm"));
+            fetch("config/register.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json()) // Converte a resposta para JSON
+            .then(data => {
+                if (data.status === "error") {
+                    document.getElementById("registerError").innerText = data.message; // Exibe a mensagem de erro
+                } else if (data.status === "success") {
+                    window.location.href = "public/user_dashboard.php"; // Redireciona em caso de sucesso
+                }
+            })
+            .catch(error => {
+                document.getElementById("registerError").innerText = "Erro ao processar o registro. Tente novamente.";
             });
         });
     </script>

@@ -97,6 +97,12 @@ $conn->close();
         header a {
             color: #007bff;
         }
+        .Explicacao {
+            font-size: 0.9rem;
+            color: #ff0000; /* Azul padrão do Bootstrap */
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -117,7 +123,7 @@ $conn->close();
     </nav>
     <form id="formulario" method="post" action="../includes/salvar_respostas.php">
         <div class="container" id="formularioContainer">
-            <!-- Conteúdo do formulario é gerado dinamicamente aqui -->
+            <!-- Conteúdo do formulario -->
         </div>
         <input type="hidden" id="formId" name="formId" value="<?php echo $id; ?>">
         <div class="form-footer">
@@ -135,18 +141,21 @@ $conn->close();
     const formularioContainer = document.getElementById('formularioContainer');
     if (formulario) {
         const formHtml = formulario.map(elem => {
+            const comentario = elem.explicacao ? `<div class="Explicacao"><i>${elem.explicacao}</i></div>` : "";
             const condicao = elem.condicao ? `data-condicao="${elem.condicao}"` : 'data-condicao="sempre"';
             switch (elem.type) {
                 case "Section":
-                    return `<div class="Secao_${elem.qid}" ${condicao}><h2>${elem.label}</h2></div>`;
+                    return `<div class="Secao_${elem.qid}" ${condicao}><h2>${elem.label}</h2>${comentario}</div>`;
                 case 'Texto':
                     return `<div class="Frame FormItem Texto" ${condicao}>
                         <div class="Titulo Texto">${elem.label}</div>
+                         ${comentario}
                         <input type="text" class="inputData Texto" id="${elem.qid}" name="${elem.qid}_${elem.questionVar}" data-var="${elem.qid}_${elem.questionVar}">
                     </div>`;
                 case 'MEscolha':
                     return `<div class="Frame FormItem MEscolha" ${condicao}>
                         <div class="Titulo MEscolha">${elem.label}</div>
+                         ${comentario}
                         <div class="inputData iMEscolha">
                             ${elem.opcoes.map((opcao, index) => `
                                 <input type="checkbox" id="${elem.qid}_${index}" value="${opcao}" name="${elem.questionVar}[]" data-var="${elem.questionVar}">
@@ -157,6 +166,7 @@ $conn->close();
                 case 'Escolha2':
                     return `<div class="Frame FormItem MEscolha" ${condicao}>
                         <div class="Titulo MEscolha">${elem.label}</div>
+                         ${comentario}
                         <div class="inputData iMEscolha">
                             ${elem.opcoes.map((opcao, index) => `
                                 <input type="radio" id="${elem.qid}_${index}" name="${elem.qid}_${elem.questionVar}" value="${opcao}" data-var="${elem.questionVar}">
@@ -167,6 +177,7 @@ $conn->close();
                 case 'Escolha1':
                     return `<div class="Frame FormItem Escolha1" ${condicao}>
                         <div class="Titulo Escolha1">${elem.label}</div>
+                         ${comentario}
                         <select class="inputData Escolha1" id="${elem.qid}" name="${elem.qid}_${elem.questionVar}" data-var="${elem.questionVar}">
                             ${elem.opcoes.map(opcao => `<option value="${opcao}">${opcao}</option>`).join('')}
                         </select>
@@ -174,6 +185,7 @@ $conn->close();
                 case 'Grade':
                     return `<div class="Frame FormItem Grade" ${condicao}>
                         <div class="Titulo Grade">${elem.label}</div>
+                         ${comentario}
                         <table border="" class="inputData iGrade" id="${elem.qid}_${elem.questionVar}" data-var="${elem.questionVar}">
                             <tbody>
                                 <tr><td></td>${elem.opcoes.map(opcao => `<th>${opcao}</th>`).join('')}</tr>

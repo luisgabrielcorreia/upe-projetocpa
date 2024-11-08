@@ -1,13 +1,22 @@
 <?php
 include 'config.php'; // Conexão com o banco de dados
-session_start(); // Inicia a sessão
+
+header('Content-Type: application/json'); // Define o tipo de conteúdo como JSON
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fullName = $_POST['full_name'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Criptografa a senha
     $token = bin2hex(random_bytes(16)); // Gera um token aleatório
-    $afiliacoes = implode(',', $_POST['afiliacoes']); // Converte o array de afiliações em uma string separada por vírgulas
+
+    // Verifica se o campo afiliações foi enviado e retorna erro se estiver vazio
+    if (empty($_POST['afiliacoes'])) {
+        echo json_encode(["status" => "error", "message" => "Por favor, selecione pelo menos uma afiliação."]);
+        exit();
+    }
+
+    // Converte as afiliações em uma string separada por vírgulas
+    $afiliacoes = implode(',', $_POST['afiliacoes']);
 
     // Verifica se o email já existe
     $query = $conn->prepare("SELECT * FROM users WHERE email = ?");
@@ -16,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $query->get_result();
 
     if ($result->num_rows > 0) {
-        echo "Email já cadastrado!";
+        echo json_encode(["status" => "error", "message" => "Erro: Email já cadastrado!"]);
     } else {
         // Insere novo usuário com as afiliações
         $query = $conn->prepare("INSERT INTO users (email, full_name, password, token, afiliacoes, login_method) VALUES (?, ?, ?, ?, ?, 'traditional')");
@@ -24,11 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($query->execute()) {
             // Define a sessão do usuário
             $_SESSION['user_token'] = $token;
-            // Redireciona para o dashboard do usuário
-            header("Location: ../public/user_dashboard.php");
-            exit();
+            // Retorna sucesso
+            echo json_encode(["status" => "success"]);
         } else {
-            echo "Erro ao registrar usuário.";
+            echo json_encode(["status" => "error", "message" => "Erro ao registrar usuário."]);
         }
     }
 }

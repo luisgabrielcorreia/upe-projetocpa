@@ -3,17 +3,20 @@ function mapJoin(arr, f) {
 }
 
 function createDialog(elem) {
-    let comentario = elem.explicacao ? `<br>${elem.explicacao}<br>` : "";
+    let comentario = elem.explicacao ? `<div class="Explicacao"><i>${elem.explicacao}</i></div>` : "";
     let condicao = elem.condicao ? `data-condicao="${elem.condicao}"` : 'data-condicao="sempre"';
     switch (elem.type) {
         case "Section":
-            return `<div class="Secao_${elem.qid}" ${condicao}><h2>${elem.label}</h2></div>`;
+            return `<div class="Secao_${elem.qid}" ${condicao}>
+                        <h2>${elem.label}</h2>
+                        ${comentario}
+                    </div>`;
         case "Texto":
             return `<div class="Frame FormItem Texto" ${condicao}>
-                <div class="Titulo Texto">${elem.label}</div>
-                ${comentario}
-                <input class="inputData Texto" fid="${elem.var}" name="${elem.qid}_${elem.questionVar}" data-var="${elem.qid}_${elem.questionVar}">
-            </div>`;
+                        <div class="Titulo Texto">${elem.label}</div>
+                        ${comentario}
+                        <input class="inputData Texto" fid="${elem.var}" name="${elem.qid}_${elem.questionVar}" data-var="${elem.qid}_${elem.questionVar}">
+                    </div>`;
         case "MEscolha":
             return `<div class="Frame FormItem MEscolha" ${condicao}>
                 <div class="Titulo MEscolha">${elem.label}</div>

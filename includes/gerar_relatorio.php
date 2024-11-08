@@ -26,6 +26,10 @@ if ($result->num_rows > 0) {
 $contagens = []; // Array para armazenar contagens de respostas
 foreach ($respostas_array as $resposta) {
     foreach ($resposta as $pergunta => $resposta_valor) {
+        // Converter $pergunta e $resposta_valor para strings para evitar erros
+        $pergunta = (string) $pergunta;
+        $resposta_valor = (string) $resposta_valor;
+
         if (!isset($contagens[$pergunta])) {
             $contagens[$pergunta] = [];
         }
