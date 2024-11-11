@@ -190,8 +190,8 @@ if (isset($_SESSION['user_token'])) {
     <button class="menu-toggle" id="menuToggle"><i class="bi bi-list"></i></button>
     <div class="sidebar" id="sidebar">
         <img src="imgs/upe.png" alt="logo-upe">
-        <a href="index.php" class="active"><i class="bi bi-house-door"></i> <span>Inicio</span></a>
-        <a href="sobre.php"><i class="bi bi-info-circle"></i> <span>Sobre</span></a>
+        <a href="index.php" class="active"><i class="bi bi-people"></i> <span>MEMBROS CPA 2024-2026</span></a>
+        <a href="sobre.php"><i class="bi bi-info-circle"></i> <span>MEMBROS CSAs 2024-2026</span></a>
         <a href="relatorios.php"><i class="bi bi-file-earmark-text"></i> <span>Relatórios</span></a>
         <a href="documentos.php"><i class="bi bi-file-earmark"></i> <span>Documentos</span></a>
         <a href="contato.php"><i class="bi bi-envelope"></i> <span>Contato</span></a>
@@ -199,17 +199,34 @@ if (isset($_SESSION['user_token'])) {
         <a href="#" data-toggle="modal" data-target="#loginModal"><i class="bi bi-box-arrow-in-right"></i> <span>Login</span></a>
         <a href="#" data-toggle="modal" data-target="#registerModal"><i class="bi bi-person-plus"></i> <span>Registrar-se</span></a>
     </div>
+    
     <div class="content" id="content">
         <div class="content-container">
             <div class="container">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6">
-                        <h1 class="display-5 fw-bolder">Comissão Própria de Avaliação</h1>
-                        <p class="lead">A CPA (Comissão Própria de Avaliação) foi instituída pelo SINAES (Sistema Nacional de Avaliação da Educação Superior) e é responsável pela Autoavaliação Institucional. Seus questionários são ferramentas essenciais para o planejamento educacional, visando a melhoria da formação, da produção de conhecimento e da extensão. Além disso, identificam áreas problemáticas que necessitam de investimentos e melhorias.</p>
+                    <div class="col-md-12 text-center mb-4">
+                        <p class="lead">CONHEÇA A CPA UPE – TRIÊNIO 2024-2026</p>
                     </div>
-                    <div class="col-md-6">
-                        <img src="imgs/autoava.png" class="img-fluid" alt="Imagem Autoavaliação">
-                    </div>
+                </div>
+                <div class="row">
+                    <?php 
+                    $membros = [
+                        ["nome" => "NOME1", "cargo" => "Presidente", "foto" => "IMAGEM.JPG"],
+                        ["nome" => "NOME2", "cargo" => "Vice-Presidente", "foto" => "IMAGEM.JPG"],
+                        ["nome" => "NOME3", "cargo" => "Secretário", "foto" => "IMAGEM.JPG"],
+                    ];
+
+                    foreach ($membros as $membro): ?>
+                        <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
+                            <div class="card h-100 shadow">
+                                <img src="imagens/<?= $membro['foto'] ?>" class="card-img-top" alt="<?= $membro['nome'] ?>">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title"><?= $membro['nome'] ?></h5>
+                                    <p class="card-text"><?= $membro['cargo'] ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

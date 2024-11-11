@@ -201,8 +201,8 @@ if (isset($_SESSION['user_token'])) {
     <button class="menu-toggle" id="menuToggle"><i class="bi bi-list"></i></button>
     <div class="sidebar" id="sidebar">
         <img src="imgs/upe.png" alt="logo-upe">
-        <a href="index.php"><i class="bi bi-house-door"></i> <span>Inicio</span></a>
-        <a href="sobre.php" class="active"><i class="bi bi-info-circle"></i> <span>Sobre</span></a>
+        <a href="index.php"><i class="bi bi-people"></i> <span>MEMBROS CPA 2024-2026</span></a>
+        <a href="sobre.php" class="active"><i class="bi bi-people"></i> <span>MEMBROS CSAs 2024-2026</span></a>
         <a href="relatorios.php"><i class="bi bi-file-earmark-text"></i> <span>Relatórios</span></a>
         <a href="documentos.php"><i class="bi bi-file-earmark"></i> <span>Documentos</span></a>
         <a href="contato.php"><i class="bi bi-envelope"></i> <span>Contato</span></a>
@@ -210,48 +210,38 @@ if (isset($_SESSION['user_token'])) {
         <a href="#" data-toggle="modal" data-target="#loginModal"><i class="bi bi-box-arrow-in-right"></i> <span>Login</span></a>
         <a href="#" data-toggle="modal" data-target="#registerModal"><i class="bi bi-person-plus"></i> <span>Registrar-se</span></a>
     </div>
+
     <div class="content" id="content">
         <div class="content-container">
             <div class="container">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-12">
-                        <h1 class="display-5 fw-bolder">Sobre a Comissão Própria de Avaliação (CPA)</h1>
-                        <p class="lead">A CPA é a Comissão Própria de Avaliação, instituída pelo SINAES – Sistema Nacional de Avaliação da Educação Superior, e é responsável pela implantação e pelo desenvolvimento de processos de Autoavaliação Institucional. Os instrumentos de avaliação (questionários) desenvolvidos pela CPA constituem importantes ferramentas para o planejamento educacional, sempre em busca da melhoria da qualidade da formação, da produção do conhecimento e da extensão. Além disso, esses instrumentos permitem que sejam identificadas áreas problemáticas ou carentes de adequado investimento institucional, apontando exatamente os setores que requerem melhorias.</p>
-                        
-                        <p class="lead">Desde 2004 a Comissão Própria de Avaliação se insere historicamente na construção democrática desta Universidade, com o propósito de oferecer subsídios às decisões acadêmicas e administrativas das unidades de ensino e complexos hospitalares da UPE e de assegurar qualidade, eficiência, eqüidade e produtividade à educação superior.</p>
-                        
-                        <p class="lead">Ao ser incluída no texto do instrumento normativo maior da Universidade, a Comissão Própria de Avaliação – CPA torna-se um marco institucional regulatório na construção da identidade da UPE, em seus processos e resultados, expressando as implicações educacionais e sociais das avaliações interna e externa.</p>
-                        
-                        <h2>O que é Comissão Setorial de Avaliação (CSA)?</h2>
-                        <p class="lead">Os membros da CSA têm atribuições específicas:</p>
-                        <ul class="lead">
-                            <li>Divulgar o calendário e procedimentos da Autoavaliação Institucional.</li>
-                            <li>Orientar os segmentos avaliadores.</li>
-                            <li>Acompanhar a adesão do processo avaliativo.</li>
-                            <li>Providenciar condições técnicas para participantes da avaliação online.</li>
-                            <li>Assegurar elevada participação no processo de avaliação.</li>
-                            <li>Apresentar o resultado do Relatório de Autoavaliação à comunidade universitária.</li>
-                        </ul>
-                        
-                        <h2>Composição da CPA</h2>
-                        <p class="lead">A CPA da UPE é composta por:</p>
-                        <ul class="lead">
-                            <li>Presidente</li>
-                            <li>Docente</li>
-                            <li>Superintendência do Complexo Hospitalar</li>
-                            <li>Procurador Institucional</li>
-                            <li>Técnico-Administrativo</li>
-                            <li>Discente</li>
-                            <li>Secretaria de Ciência, Tecnologia e Meio Ambiente do Estado de PE</li>
-                            <li>Sociedade Civil</li>
-                            <li>Secretária</li>
-                        </ul>
+                    <div class="col-md-12 text-center mb-4">
+                        <p class="lead">CONHEÇA A CPA UPE – TRIÊNIO 2024-2026</p>
                     </div>
+                </div>
+                <div class="row">
+                    <?php 
+                    $membros = [
+                        ["nome" => "NOME1", "cargo" => "Presidente", "foto" => "IMAGEM.JPG"],
+                        ["nome" => "NOME2", "cargo" => "Vice-Presidente", "foto" => "IMAGEM.JPG"],
+                        ["nome" => "NOME3", "cargo" => "Secretário", "foto" => "IMAGEM.JPG"],
+                    ];
+
+                    foreach ($membros as $membro): ?>
+                        <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
+                            <div class="card h-100 shadow">
+                                <img src="imagens/<?= $membro['foto'] ?>" class="card-img-top" alt="<?= $membro['nome'] ?>">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title"><?= $membro['nome'] ?></h5>
+                                    <p class="card-text"><?= $membro['cargo'] ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
-
 
     <!-- Modal de Login -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
