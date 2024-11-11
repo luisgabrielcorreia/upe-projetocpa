@@ -201,9 +201,9 @@ if (isset($_SESSION['user_token'])) {
     <button class="menu-toggle" id="menuToggle"><i class="bi bi-list"></i></button>
     <div class="sidebar" id="sidebar">
         <img src="imgs/upe.png" alt="logo-upe">
-        <a href="index.php"><i class="bi bi-house-door"></i> <span>Inicio</span></a>
-        <a href="sobre.php"><i class="bi bi-info-circle"></i> <span>Sobre</span></a>
-        <a href="relatorios.php" class="active"><i class="bi bi-file-earmark-text"></i><span>Relatórios</span></a>
+        <a href="index.php"><i class="bi bi-people"></i> <span>MEMBROS CPA 2024-2026</span></a>
+        <a href="sobre.php"><i class="bi bi-people"></i> <span>MEMBROS CSAs 2024-2026</span></a>
+        <a href="relatorios.php" class="active"><i class="bi bi-file-earmark-text"></i><span>Relatorios</span></a>
         <a href="documentos.php"><i class="bi bi-file-earmark"></i> <span>Documentos</span></a>
         <a href="contato.php"><i class="bi bi-envelope"></i> <span>Contato</span></a>
         <a href="<?php echo $client->createAuthUrl(); ?>"><i class="bi bi-google"></i> <span>Entrar com google</span></a>
